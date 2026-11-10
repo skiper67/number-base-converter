@@ -1,0 +1,58 @@
+{
+  "name": "number-base-converter",
+  "displayName": "Number Base Converter",
+  "description": "Converts integers between number bases",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.145.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "numberConverter.convert",
+        "title": "Перевод чисел: перевести число"
+      },
+      {
+        "command": "numberConverter.statistics",
+        "title": "Перевод чисел: статистика сеанса"
+      },
+      {
+        "command": "numberConverter.reset",
+        "title": "Перевод чисел: сбросить статистику"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "numberConverter.convert",
+          "when": "editorHasSelection",
+          "group": "navigation@20"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "esbuild extension.js --bundle --platform=node --external:vscode --outfile=dist/extension.js",
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "24.x",
+    "@types/vscode": "^1.145.0",
+    "@vscode/test-cli": "^0.0.15",
+    "@vscode/test-electron": "^3.0.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.5.0"
+  },
+  "overrides": {
+    "diff": "^8.0.4",
+    "serialize-javascript": "^7.0.6"
+  }
+}
